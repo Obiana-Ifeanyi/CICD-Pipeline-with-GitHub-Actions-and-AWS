@@ -61,6 +61,8 @@ jobs:
 
     - name: Pull code to Elastic Beanstalk
       run: |
+        aws elasticbeanstalk create-application \
+          --application-name my-application
         aws elasticbeanstalk create-application-version \
           --application-name my-application \
           --version-label v1.0.0 \
