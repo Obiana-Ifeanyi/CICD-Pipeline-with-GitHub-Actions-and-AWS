@@ -53,18 +53,18 @@ jobs:
 
     - name: Create S3 bucket
       run: |
-        aws s3api create-bucket --bucket my-bucket --region "us-east-1"
+        aws s3api create-bucket --bucket my-bucket2323 --region "us-east-1"
 
     - name: Upload code to S3
       run: |
-        aws s3 cp deploy.zip s3://my-bucket/deploy.zip
+        aws s3 cp deploy.zip s3://my-bucket2323/deploy.zip
 
     - name: Pull code to Elastic Beanstalk
       run: |
         aws elasticbeanstalk create-application-version \
           --application-name my-application \
           --version-label v1.0.0 \
-          --source-bundle S3Bucket="my-bucket",S3Key="deploy.zip"
+          --source-bundle S3Bucket="my-bucket2323",S3Key="deploy.zip"
         aws elasticbeanstalk update-environment \
           --environment-name my-environment \
           --version-label v1.0.0
