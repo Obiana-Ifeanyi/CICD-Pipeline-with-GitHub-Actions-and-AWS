@@ -53,7 +53,7 @@ jobs:
 
     - name: Create S3 bucket
       run: |
-        aws s3api create-bucket --bucket my-bucket2323 --region us-east-1 --create-bucket-configuration LocationConstraint=us-east-1
+        aws s3api create-bucket --bucket my-bucket2323 
 
     - name: Upload code to S3
       run: |
