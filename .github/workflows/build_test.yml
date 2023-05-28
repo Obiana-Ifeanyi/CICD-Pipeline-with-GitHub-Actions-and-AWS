@@ -69,10 +69,11 @@ jobs:
           --source-bundle S3Bucket="grisisobiana1234",S3Key="deploy.zip"
         aws elasticbeanstalk create-environment \
           --application-name my-application \
-          --environment-name my-environment \
+          --environment-name my-environmentx \
           --solution-stack-name "64bit Amazon Linux 2 v3.5.2 running Python 3.8"
+        aws elasticbeanstalk wait environment-ready --environment-name my-environmentx
         aws elasticbeanstalk update-environment \
-          --environment-name my-environment \
+          --environment-name my-environmentx \
           --version-label v1.0.0
 
 
