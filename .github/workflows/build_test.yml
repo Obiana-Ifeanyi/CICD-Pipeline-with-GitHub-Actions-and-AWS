@@ -59,7 +59,7 @@ jobs:
       run: |
         aws s3 cp deploy.zip s3://grisisobiana1234/deploy.zip
 
-    - name: Pull code to Elastic Beanstalk
+    - name: Create your application and application version
       run: |
         aws elasticbeanstalk create-application \
           --application-name my-application
@@ -67,13 +67,22 @@ jobs:
           --application-name my-application \
           --version-label v1.0.0 \
           --source-bundle S3Bucket="grisisobiana1234",S3Key="deploy.zip"
+          
+    - name: Create your environment
+      run: |     
         aws elasticbeanstalk create-environment \
           --application-name my-application \
-          --environment-name my-environmentx \
+          --environment-name my-envx \
           --solution-stack-name "64bit Amazon Linux 2 v3.5.2 running Python 3.8"
-        aws elasticbeanstalk wait environment-ready --environment-name my-environmentx
+          
+    - name: Wait for the environment to be ready
+      run: |       
+        aws elasticbeanstalk wait environment-ready --environment-name my-envx
+        
+    - name: Update the environment to use the desired application version
+      run: |     
         aws elasticbeanstalk update-environment \
-          --environment-name my-environmentx \
+          --environment-name my-envx \
           --version-label v1.0.0
 
 
