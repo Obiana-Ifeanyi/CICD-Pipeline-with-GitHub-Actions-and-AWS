@@ -96,7 +96,7 @@ jobs:
         
     - name: attach-additional-role-policy
       run: |    
-        aws iam attach-role-policy --role-name my-instance-role --policy-arn arn:aws:iam::914209118176:policy/AmazonS3FullAccess
+        aws iam attach-role-policy --role-name my-instance-role --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess
         
     - name: add-role-to-instance-profile
       run: |    
