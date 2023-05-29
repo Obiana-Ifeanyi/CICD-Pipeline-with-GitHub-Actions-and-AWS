@@ -87,7 +87,7 @@ jobs:
             {
               "Effect": "Allow",
               "Principal": {
-                "Service": "lambda.amazonaws.com"
+                "Service": "elasticbeanstalk.amazonaws.com"
               },
               "Action": "sts:AssumeRole"
             }
@@ -107,5 +107,6 @@ jobs:
         aws elasticbeanstalk update-environment \
           --environment-name my-envx \
           --version-label v1.0.0
+          --option-settings Namespace=aws:autoscaling:launchconfiguration,OptionName=IamInstanceProfile,Value=my-instance-profile
 
 
