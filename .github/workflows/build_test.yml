@@ -78,6 +78,25 @@ jobs:
     - name: Wait for the environment to be ready
       run: |       
         aws elasticbeanstalk wait environment-ready --environment-name my-envx
+    
+    - name: create-instance-profile
+      run: |
+        aws iam create-instance-profile --instance-profile-name my-instance-profile
+        
+    - name: create-role
+      run: |
+        aws iam create-role --role-name my-instance-role --assume-role-policy-document '{
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ec2.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        }'
         
     - name: Update the environment to use the desired application version
       run: |     
